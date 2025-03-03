@@ -16,6 +16,7 @@ list_of_files = [
     "setup.py",
     "main.py",
     "research/trials.ipynb",
+    "Dockerfile",
     ".env",
 ]
 
