@@ -10,12 +10,13 @@ list_of_files = [
     "src/__init__.py",
     "src/run_local.py",
     "src/helper.py",
-    "model/instruction.txt",
+    "src/app.py",
+    "model/locallm.py",
     "requirements.txt",
     "setup.py",
     "main.py",
     "research/trials.ipynb",
-
+    ".env",
 ]
 
 
