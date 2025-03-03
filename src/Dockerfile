@@ -1,5 +1,5 @@
 FROM python:3.12.9-alpine
-ADD . /app
+COPY  . /app
 WORKDIR /app
 RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 5001 8501
