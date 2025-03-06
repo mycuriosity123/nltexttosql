@@ -7,6 +7,7 @@ app = Flask(__name__)
 def generate_query():
     data=request.get_json()
     user_ques = data["question"]
+    print(user_ques)
     # write_query({"question": "How many Employees are there?"})
     sql_query = write_query(ques_dict={"question": user_ques})
     return jsonify(sql_query)
@@ -19,9 +20,13 @@ def execute_sql_query():
     query_output = execute_query(query_dic={"query": f"{sql_execute}"})
     return jsonify(query_output)
 
+# app = Starlette(wsgi=WSGIMiddleware(flask_app))
 
-
+# def run_app():
+#     app.run(debug=False, host='0.0.0.0', port=5001)
 
 
 if __name__ == '__main__': 
-    app.run(debug = True,host="0.0.0.0",port=5001) 
+    pass
+    # uvicorn.run(app,host='127.0.0.1',port=5001)
+    # run_app()

@@ -13,9 +13,7 @@ load_dotenv()
 
 os.environ["GROQ_API_KEY"] = os.getenv('GROQ_API_KEY')
 
-db = SQLDatabase.from_uri("sqlite:///D:/nltexttosql/Chinook.db")
-
-
+db = SQLDatabase.from_uri("sqlite:///mlflow.db")
 
 
 llm = init_chat_model("llama3-8b-8192", model_provider="groq")
@@ -39,13 +37,12 @@ def write_query(ques_dict:dict):
 
 
 
-
 def execute_query(query_dic:dict):
     """Execute SQL query."""
     execute_query_tool = QuerySQLDataBaseTool(db=db)
     return {"result": execute_query_tool.invoke(query_dic["query"])}
 
-# res=execute_query({"query":"SELECT COUNT(*) FROM Employee;"})
+# res=execute_query({"query":"SELECT COUNT(*) FROM runs;"})
 # print(res)
 
 
