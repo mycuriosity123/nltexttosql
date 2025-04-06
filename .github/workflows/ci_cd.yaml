@@ -25,7 +25,7 @@ jobs:
       run: |
         pytest
   
-  build-and-publish:
+  build-and-deploy:
     needs: build-and-test
     runs-on: ubuntu-latest
   
@@ -50,9 +50,6 @@ jobs:
         push: true
         tags: sai89199/genaiapp:latest
       
-
-  build-and-deploy:
-     steps:
      - name: Deploy to EC2 instance
        uses: appleboy/ssh-action@master
        with:
