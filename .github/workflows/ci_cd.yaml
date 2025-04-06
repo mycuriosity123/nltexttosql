@@ -59,7 +59,7 @@ jobs:
      - name: Deploy to EC2 instance
        uses: appleboy/ssh-action@master
        with:
-        host: ec2-13-48-136-135.eu-north-1.compute.amazonaws.com
+        host: ec2-16-171-14-148.eu-north-1.compute.amazonaws.com
         username: ubuntu
         key: ${{ secrets.EC2_SSH_KEY}}
         script: |
