@@ -8,7 +8,7 @@ on:
   
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - name: Checkout
@@ -27,7 +27,7 @@ jobs:
   
   build-and-deploy:
     needs: build-and-test
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
   
     steps:
     - name: Checkout code 
