@@ -8,7 +8,7 @@ on:
   
 jobs:
   build-and-test:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
@@ -25,9 +25,9 @@ jobs:
       run: |
         pytest
   
-  build-and-deploy:
+  build-and-publish:
     needs: build-and-test
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
   
     steps:
     - name: Checkout code 
@@ -50,6 +50,12 @@ jobs:
         push: true
         tags: sai89199/genaiapp:latest
       
+
+  build-and-deploy:
+    needs: build-and-publish
+    runs-on: ubuntu-latest
+    
+    steps:
      - name: Deploy to EC2 instance
        uses: appleboy/ssh-action@master
        with:
