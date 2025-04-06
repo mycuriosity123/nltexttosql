@@ -38,9 +38,12 @@ jobs:
 
     - name: Login to DockerHub
       uses: docker/login-action@v2
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       with:
-        username: sai89199
-        password: dckr_pat_yTQASA_yLGNLOt2d-z9jMz382FM
+        username: DOCKER_USERNAME
+        password: DOCKER_PASSWORD
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v4
@@ -59,8 +62,8 @@ jobs:
      - name: Deploy to EC2 instance
        uses: appleboy/ssh-action@master
        with:
-        host: ec2-56-228-1-52.eu-north-1.compute.amazonaws.com
-        username: ubuntu
+        host: ${{ secrets.HOST_DNS}}
+        username: ${{ secrets.USERNAME}}
         key: ${{ secrets.EC2_SSH_KEY}}
         script: |
           docker stop genaiapp || true
