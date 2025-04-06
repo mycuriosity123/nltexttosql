@@ -27,7 +27,7 @@ jobs:
   
   build-and-publish:
     needs: build-and-test
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
   
     steps:
     - name: Checkout code 
@@ -53,13 +53,13 @@ jobs:
 
   build-and-deploy:
     needs: build-and-publish
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     
     steps:
      - name: Deploy to EC2 instance
        uses: appleboy/ssh-action@master
        with:
-        host: ec2-16-171-14-148.eu-north-1.compute.amazonaws.com
+        host: ec2-56-228-1-52.eu-north-1.compute.amazonaws.com
         username: ubuntu
         key: ${{ secrets.EC2_SSH_KEY}}
         script: |
