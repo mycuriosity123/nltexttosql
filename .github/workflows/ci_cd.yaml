@@ -50,6 +50,21 @@ jobs:
         push: true
         tags: sai89199/genaiapp:latest
       
-    - name: Image digest
-      run: echo ${{ steps.build-and-publish.outputs.digest}}
+
+  build-and-deploy:
+     needs: build-and-publish
+
+     steps:
+     - name: Deploy to EC2 instance
+       uses: appleboy/ssh-action@master
+       with:
+        host: ec2-13-48-136-135.eu-north-1.compute.amazonaws.com
+        username: ubuntu
+        key: ${{ secrets.EC2_SSH_KEY}}
+        script: |
+          docker stop genaiapp || true
+          docker rm genaiapp || true
+          docker pull sai89199/genaiapp:latest
+          docker run -d -p 5001:5001 -p 8501:8501 --name texttosqlcontainerfromhub sai89199/genaiapp:latest
+
 
