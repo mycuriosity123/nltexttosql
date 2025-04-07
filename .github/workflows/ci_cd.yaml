@@ -65,7 +65,7 @@ jobs:
         script: |
           docker stop genaiapp || true
           docker rm genaiapp || true
-          docker pull sai89199/genaiapp:latest
-          docker run -d -p 5001:5001 -p 8501:8501 --name texttosqlcontainerfromhub sai89199/genaiapp:latest
+          docker pull ${{ secrets.DOCKER_USERNAME }}/genaiapp:latest
+          docker run -d -p 5001:5001 -p 8501:8501 --name texttosqlcontainerfromhub ${{ secrets.DOCKER_USERNAME }}/genaiapp:latest
 
 
